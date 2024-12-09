@@ -165,6 +165,18 @@ variable "vpc_endpoints" {
   default     = {}
 }
 
+variable "authorize_vpc_endpoint_access_create" {
+  description = "Flag to indicate if VPC endpoint access authorization should be created"
+  type        = bool
+  default     = false
+}
+
+variable "aws_acccont_ids" {
+  description = "List of AWS account IDs to authorize for VPC endpoint access"
+  type        = list(string)
+  default     = []
+}
+
 ################################################################################
 # Access Policy
 ################################################################################

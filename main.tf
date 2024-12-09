@@ -258,6 +258,12 @@ resource "aws_opensearch_vpc_endpoint" "this" {
   }
 }
 
+resource "aws_opensearch_authorize_vpc_endpoint_access" "this" {
+  for_each = var.authorize_vpc_endpoint_access_create && length(var.aws_acccont_ids) > 0 ? toset(var.aws_acccont_ids) : []
+  domain_name = aws_opensearch_domain.this[0].domain_name
+  account     = each.value
+}
+
 ################################################################################
 # Access Policy
 ################################################################################
